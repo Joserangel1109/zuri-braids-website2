@@ -3,117 +3,154 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salón de Peinados Moderno</title>
+  <title>Salón de Peinados</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {margin:0; padding:0; box-sizing:border-box;}
-    body {font-family: 'Arial', sans-serif; background:#f7f3f0; color:#333; scroll-behavior: smooth;}
+    /* Reset básico */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Roboto', sans-serif; line-height: 1.6; color: #333; }
+    a { text-decoration: none; color: inherit; }
 
-    /* Navbar */
+    /* Navegación */
     nav {
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background-color: rgba(255,255,255,0.95);
+      background: #222;
+      color: #fff;
+      padding: 10px 20px;
       display: flex;
-      justify-content: center;
-      padding: 15px 0;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
-    nav a {
-      text-decoration: none;
-      color: #333;
+    nav a { margin: 0 15px; font-weight: 500; }
+    nav a:hover { color: #f0a500; }
+    .translate-btn {
+      cursor: pointer;
+      background: #f0a500;
+      color: #fff;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 5px;
       font-weight: bold;
-      margin: 0 20px;
-      transition: color 0.3s;
     }
-    nav a:hover {color:#ff4081;}
 
     /* Hero */
     .hero {
-      height: 100vh;
+      height: 90vh;
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: #fff;
       text-align: center;
       position: relative;
-      overflow: hidden;
     }
     .hero::after {
-      content: "";
+      content: '';
       position: absolute;
       top:0; left:0;
       width:100%; height:100%;
-      background-color: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.5);
     }
     .hero-content {
       position: relative;
       z-index: 1;
-      animation: fadeIn 2s ease-in-out;
     }
-    .hero h1 {font-size:3em; margin-bottom:15px;}
-    .hero p {font-size:1.2em;}
-    @keyframes fadeIn {from {opacity:0; transform: translateY(20px);} to {opacity:1; transform:translateY(0);} }
+    .hero-content h1 { font-size: 3.5em; margin-bottom: 20px; }
+    .hero-content p { font-size: 1.5em; margin-bottom: 30px; }
+    .hero-content button {
+      padding: 10px 20px;
+      font-size: 1.2em;
+      background: #f0a500;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .hero-content button:hover { background: #ffbe34; }
 
     /* About */
-    #about {padding:100px 20px; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:30px;}
-    #about .about-text {flex:1 1 300px; animation: slideInLeft 1s ease;}
-    #about h2 {font-size:2em; margin-bottom:20px;}
-    #about .about-image {flex:1 1 300px; animation: slideInRight 1s ease;}
-    #about .about-image img {width:100%; border-radius:15px;}
-    @keyframes slideInLeft {from {opacity:0; transform:translateX(-50px);} to {opacity:1; transform:translateX(0);} }
-    @keyframes slideInRight {from {opacity:0; transform:translateX(50px);} to {opacity:1; transform:translateX(0);} }
+    #about {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 80px 20px;
+      align-items: center;
+      gap: 40px;
+    }
+    .about-text { flex: 1 1 400px; }
+    .about-text h2 { font-size: 2.5em; margin-bottom: 20px; color: #222; }
+    .about-text p { font-size: 1.1em; color: #555; }
+    .about-image { flex: 1 1 400px; }
+    .about-image img { width: 100%; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 
-    /* Gallery Masonry */
-    #gallery {padding:100px 20px; text-align:center;}
-    #gallery h2 {font-size:2em; margin-bottom:40px;}
-    .gallery-grid {column-count: 3; column-gap: 20px;}
-    @media(max-width: 1000px){.gallery-grid{column-count:2;}}
-    @media(max-width: 600px){.gallery-grid{column-count:1;}}
-    .gallery-item {margin-bottom:20px; break-inside: avoid; position: relative; cursor:pointer;}
-    .gallery-item img {width:100%; border-radius:15px; transition: transform 0.3s ease;}
-    .gallery-item:hover img {transform: scale(1.05);}
-    .caption {position:absolute; bottom:0; background:rgba(0,0,0,0.6); width:100%; color:white; text-align:center; padding:10px 0; font-weight:bold; border-radius:0 0 15px 15px;}
-
-    /* Lightbox */
-    #lightbox {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; align-items:center; justify-content:center; z-index:2000; animation:fadeIn 0.5s;}
-    #lightbox img {max-width:90%; max-height:80%; border-radius:10px;}
-    #lightbox span {position:absolute; top:20px; right:30px; font-size:2em; color:white; cursor:pointer;}
+    /* Gallery */
+    #gallery { padding: 80px 20px; text-align: center; background: #f9f9f9; }
+    #gallery h2 { font-size: 2.5em; margin-bottom: 40px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); transition: transform 0.3s; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .gallery-item:hover img { transform: scale(1.1); }
+    .caption {
+      position: absolute;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      width: 100%;
+      padding: 10px 0;
+      color: #fff;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1em;
+    }
 
     /* Footer */
-    footer {background:#333; color:white; text-align:center; padding:20px;}
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 1em;
+    }
 
-    /* Translate Button */
-    .translate-btn {position:fixed; bottom:20px; right:20px; background-color:#ff4081; color:white; border:none; padding:10px 15px; border-radius:50px; cursor:pointer; z-index:1000; transition: transform 0.3s;}
-    .translate-btn:hover {transform:scale(1.1);}
+    /* Responsive */
+    @media(max-width: 768px){
+      .hero-content h1 { font-size: 2.5em; }
+      .hero-content p { font-size: 1.2em; }
+      #about { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- Navigation -->
   <nav>
-    <a href="#hero">Inicio</a>
-    <a href="#about">Sobre Nosotros</a>
-    <a href="#gallery">Galería</a>
+    <div>
+      <a href="#hero" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="#about" data-es="Sobre Nosotros" data-en="About">Sobre Nosotros</a>
+      <a href="#gallery" data-es="Galería" data-en="Gallery">Galería</a>
+    </div>
+    <button class="translate-btn" id="translateBtn">EN</button>
   </nav>
 
   <!-- Hero Section -->
   <section class="hero" id="hero" style="background-image:url('img/hero.jpg');">
     <div class="hero-content">
-      <h1>Bienvenido a Nuestro Salón</h1>
-      <p>Transformamos tu estilo con peinados únicos</p>
+      <h1 data-es="Bienvenido a Nuestro Salón" data-en="Welcome to Our Salon">Bienvenido a Nuestro Salón</h1>
+      <p data-es="Transformamos tu estilo con peinados únicos" data-en="We transform your style with unique hairstyles">Transformamos tu estilo con peinados únicos</p>
+      <button data-es="Reserva Ahora" data-en="Book Now">Reserva Ahora</button>
     </div>
   </section>
 
   <!-- About Section -->
   <section id="about">
     <div class="about-text">
-      <h2>Sobre Nosotros</h2>
-      <p>En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!</p>
+      <h2 data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</h2>
+      <p data-es="En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!" 
+         data-en="At our salon, we specialize in African and modern hairstyles. Our professional team is ready to offer you quality service and creativity in every style. Your satisfaction is our priority!">
+         En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!
+      </p>
     </div>
     <div class="about-image">
       <img src="img/about.jpg" alt="Sobre nosotros">
@@ -122,79 +159,35 @@
 
   <!-- Gallery Section -->
   <section id="gallery">
-    <h2>Nuestra Galería</h2>
+    <h2 data-es="Nuestra Galería" data-en="Our Gallery">Nuestra Galería</h2>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="img/box-braids.jpg" alt="Box Braids"><div class="caption">Box Braids</div></div>
-      <div class="gallery-item"><img src="img/cornrows.jpg" alt="Cornrows"><div class="caption">Cornrows</div></div>
-      <div class="gallery-item"><img src="img/fulani.jpg" alt="Fulani"><div class="caption">Fulani</div></div>
-      <div class="gallery-item"><img src="img/ghana.jpg" alt="Ghana Braids"><div class="caption">Ghana Braids</div></div>
-      <div class="gallery-item"><img src="img/twist-out.jpg" alt="Twist Out"><div class="caption">Twist Out</div></div>
-      <div class="gallery-item"><img src="img/updo.jpg" alt="Updo"><div class="caption">Updo</div></div>
-      <div class="gallery-item"><img src="img/salon.jpg" alt="Salón"><div class="caption">Nuestro Salón</div></div>
+      <div class="gallery-item"><img src="img/box-braids.jpg" alt="Box Braids"><div class="caption" data-es="Box Braids" data-en="Box Braids">Box Braids</div></div>
+      <div class="gallery-item"><img src="img/cornrows.jpg" alt="Cornrows"><div class="caption" data-es="Cornrows" data-en="Cornrows">Cornrows</div></div>
+      <div class="gallery-item"><img src="img/fulani.jpg" alt="Fulani"><div class="caption" data-es="Fulani" data-en="Fulani">Fulani</div></div>
+      <div class="gallery-item"><img src="img/ghana.jpg" alt="Ghana Braids"><div class="caption" data-es="Ghana Braids" data-en="Ghana Braids">Ghana Braids</div></div>
+      <div class="gallery-item"><img src="img/twist-out.jpg" alt="Twist Out"><div class="caption" data-es="Twist Out" data-en="Twist Out">Twist Out</div></div>
+      <div class="gallery-item"><img src="img/updo.jpg" alt="Updo"><div class="caption" data-es="Updo" data-en="Updo">Updo</div></div>
+      <div class="gallery-item"><img src="img/salon.jpg" alt="Nuestro Salón"><div class="caption" data-es="Nuestro Salón" data-en="Our Salon">Nuestro Salón</div></div>
     </div>
   </section>
 
-  <!-- Lightbox -->
-  <div id="lightbox">
-    <span onclick="closeLightbox()">&times;</span>
-    <img src="" alt="Imagen ampliada">
-  </div>
-
-  <!-- Translate Button -->
-  <button class="translate-btn" onclick="translatePage()">Traducir a Inglés</button>
-
   <!-- Footer -->
   <footer>
-    &copy; 2025 Nuestro Salón. Todos los derechos reservados.
+    <p data-es="Todos los derechos reservados" data-en="All rights reserved">Todos los derechos reservados</p>
   </footer>
 
+  <!-- Translation Script -->
   <script>
-    // Traducción bidireccional
-    let lang = "es";
-    function translatePage() {
-      if(lang === "es") {
-        lang = "en";
-        document.documentElement.lang = "en";
-        document.querySelector(".hero h1").textContent = "Welcome to Our Salon";
-        document.querySelector(".hero p").textContent = "We transform your style with unique hairstyles";
-        document.querySelector("#about h2").textContent = "About Us";
-        document.querySelector("#about p").textContent = "At our salon we specialize in African and modern hairstyles. Our professional team is ready to offer you quality service and creativity in every style. Your satisfaction is our priority!";
-        document.querySelector("#gallery h2").textContent = "Our Gallery";
-        const captions = ["Box Braids","Cornrows","Fulani","Ghana Braids","Twist Out","Updo","Our Salon"];
-        document.querySelectorAll(".caption").forEach((c,i)=>c.textContent=captions[i]);
-        const navs = ["Home","About Us","Gallery"];
-        document.querySelectorAll("nav a").forEach((a,i)=>a.textContent = navs[i]);
-        document.querySelector(".translate-btn").textContent = "Traducir a Español";
-      } else {
-        lang = "es";
-        document.documentElement.lang = "es";
-        document.querySelector(".hero h1").textContent = "Bienvenido a Nuestro Salón";
-        document.querySelector(".hero p").textContent = "Transformamos tu estilo con peinados únicos";
-        document.querySelector("#about h2").textContent = "Sobre Nosotros";
-        document.querySelector("#about p").textContent = "En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!";
-        document.querySelector("#gallery h2").textContent = "Nuestra Galería";
-        const captions = ["Box Braids","Cornrows","Fulani","Ghana Braids","Twist Out","Updo","Nuestro Salón"];
-        document.querySelectorAll(".caption").forEach((c,i)=>c.textContent=captions[i]);
-        const navs = ["Inicio","Sobre Nosotros","Galería"];
-        document.querySelectorAll("nav a").forEach((a,i)=>a.textContent = navs[i]);
-        document.querySelector(".translate-btn").textContent = "Traducir a Inglés";
-      }
-    }
+    const btn = document.getElementById('translateBtn');
+    let lang = 'es';
 
-    // Lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    document.querySelectorAll('.gallery-item img').forEach(img=>{
-      img.addEventListener('click', ()=>{
-        lightbox.style.display = 'flex';
-        lightboxImg.src = img.src;
-        lightboxImg.alt = img.alt;
+    btn.addEventListener('click', () => {
+      lang = lang === 'es' ? 'en' : 'es';
+      document.querySelectorAll('[data-es]').forEach(el => {
+        el.innerText = el.getAttribute(`data-${lang}`);
       });
+      btn.innerText = lang === 'es' ? 'EN' : 'ES';
     });
-    function closeLightbox(){
-      lightbox.style.display = 'none';
-      lightboxImg.src = '';
-    }
   </script>
 
 </body>
