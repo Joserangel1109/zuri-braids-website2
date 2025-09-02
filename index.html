@@ -1,267 +1,201 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zuri Braids - Especialistas en Trenzas Africanas</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salón de Peinados Moderno</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box;}
+    body {font-family: 'Arial', sans-serif; background:#f7f3f0; color:#333; scroll-behavior: smooth;}
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    /* Navbar */
+    nav {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.95);
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      margin: 0 20px;
+      transition: color 0.3s;
+    }
+    nav a:hover {color:#ff4081;}
 
-<!-- Icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top:0; left:0;
+      width:100%; height:100%;
+      background-color: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .hero h1 {font-size:3em; margin-bottom:15px;}
+    .hero p {font-size:1.2em;}
+    @keyframes fadeIn {from {opacity:0; transform: translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
-<style>
-:root {
-    --gold: #D4AF37;
-    --terracotta: #8B4513;
-    --ivory: #FFF8DC;
-    --olive: #6B8E23;
-    --chocolate: #3C1810;
-    --beige: #F5F5DC;
-    --coral: #FF6B6B;
-    --charcoal: #36454F;
-    --white: #FFFFFF;
-    
-    --font-heading: 'Playfair Display', serif;
-    --font-subtitle: 'Montserrat', sans-serif;
-    --font-body: 'Open Sans', sans-serif;
-}
+    /* About */
+    #about {padding:100px 20px; display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:30px;}
+    #about .about-text {flex:1 1 300px; animation: slideInLeft 1s ease;}
+    #about h2 {font-size:2em; margin-bottom:20px;}
+    #about .about-image {flex:1 1 300px; animation: slideInRight 1s ease;}
+    #about .about-image img {width:100%; border-radius:15px;}
+    @keyframes slideInLeft {from {opacity:0; transform:translateX(-50px);} to {opacity:1; transform:translateX(0);} }
+    @keyframes slideInRight {from {opacity:0; transform:translateX(50px);} to {opacity:1; transform:translateX(0);} }
 
-* {margin:0;padding:0;box-sizing:border-box;}
-body {font-family:var(--font-body);line-height:1.6;color:var(--charcoal);background-color:var(--ivory);}
+    /* Gallery Masonry */
+    #gallery {padding:100px 20px; text-align:center;}
+    #gallery h2 {font-size:2em; margin-bottom:40px;}
+    .gallery-grid {column-count: 3; column-gap: 20px;}
+    @media(max-width: 1000px){.gallery-grid{column-count:2;}}
+    @media(max-width: 600px){.gallery-grid{column-count:1;}}
+    .gallery-item {margin-bottom:20px; break-inside: avoid; position: relative; cursor:pointer;}
+    .gallery-item img {width:100%; border-radius:15px; transition: transform 0.3s ease;}
+    .gallery-item:hover img {transform: scale(1.05);}
+    .caption {position:absolute; bottom:0; background:rgba(0,0,0,0.6); width:100%; color:white; text-align:center; padding:10px 0; font-weight:bold; border-radius:0 0 15px 15px;}
 
-/* Header */
-.header {background: linear-gradient(135deg, var(--terracotta), var(--chocolate)); color: var(--white); padding: 1rem 0; position: fixed; width: 100%; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
-.nav-container {max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;}
-.logo {font-family:var(--font-heading); font-size:1.8rem; font-weight:700; color:var(--gold); text-decoration:none;}
-.nav-menu {display:flex; list-style:none; gap:2rem;}
-.nav-menu a {color:var(--white); text-decoration:none; font-family:var(--font-subtitle); font-weight:500; transition: color 0.3s;}
-.nav-menu a:hover {color:var(--gold);}
-.cta-button {background: var(--coral); color: var(--white); padding:0.8rem 1.5rem; border:none; border-radius:25px; font-family:var(--font-subtitle); font-weight:600; cursor:pointer; transition:all 0.3s; text-decoration:none;}
-.cta-button:hover {background:#ff5252; transform:translateY(-2px); box-shadow:0 5px 15px rgba(255,107,107,0.4);}
-.hamburger {display:none; flex-direction:column; cursor:pointer;}
-.hamburger span {width:25px;height:3px;background:var(--white);margin:3px 0; transition:0.3s;}
+    /* Lightbox */
+    #lightbox {position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:none; align-items:center; justify-content:center; z-index:2000; animation:fadeIn 0.5s;}
+    #lightbox img {max-width:90%; max-height:80%; border-radius:10px;}
+    #lightbox span {position:absolute; top:20px; right:30px; font-size:2em; color:white; cursor:pointer;}
 
-/* Hero */
-.hero {background: linear-gradient(rgba(139,69,19,0.7), rgba(60,24,16,0.7)), url('img/hero.jpg'); background-size:cover; background-position:center; height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--white); margin-top:80px;}
-.hero-content {max-width:800px; padding:0 2rem;}
-.hero h1 {font-family:var(--font-heading); font-size:3.5rem; margin-bottom:1rem; color:var(--gold); text-shadow:2px 2px 4px rgba(0,0,0,0.3);}
-.hero p {font-size:1.3rem; margin-bottom:2rem; opacity:0.9;}
-.hero-buttons {display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;}
-.btn-primary {background:var(--gold); color:var(--charcoal); padding:1rem 2rem; border:none; border-radius:30px; font-family:var(--font-subtitle); font-weight:600; cursor:pointer; transition:all 0.3s; text-decoration:none; display:inline-block;}
-.btn-primary:hover {background:#b8941f; transform:translateY(-2px); box-shadow:0 5px 15px rgba(212,175,55,0.4);}
-.btn-secondary {background:transparent; color:var(--white); padding:1rem 2rem; border:2px solid var(--white); border-radius:30px; font-family:var(--font-subtitle); font-weight:600; cursor:pointer; transition:all 0.3s; text-decoration:none; display:inline-block;}
-.btn-secondary:hover {background:var(--white); color:var(--terracotta);}
+    /* Footer */
+    footer {background:#333; color:white; text-align:center; padding:20px;}
 
-/* Sections */
-.container {max-width:1200px;margin:0 auto;padding:0 2rem;}
-.section-title {font-family:var(--font-heading); font-size:2.5rem; text-align:center; margin-bottom:3rem; color:var(--terracotta);}
-
-/* Services */
-.services {padding:5rem 0; background:var(--white);}
-.services-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;}
-.service-card {background:var(--beige); border-radius:15px; padding:2rem; text-align:center; transition:all 0.3s; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-.service-card:hover {transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15);}
-.service-icon {font-size:3rem; color:var(--gold); margin-bottom:1rem;}
-.service-card h3 {font-family:var(--font-subtitle); font-size:1.5rem; margin-bottom:1rem; color:var(--terracotta);}
-.price-range {font-family:var(--font-subtitle); font-weight:600; color:var(--gold); font-size:1.2rem;}
-
-/* About */
-.about {padding:5rem 0; background: linear-gradient(45deg, var(--beige), var(--ivory));}
-.about-content {display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;}
-.about-text h2 {font-family:var(--font-heading); font-size:2.2rem; margin-bottom:1.5rem; color:var(--terracotta);}
-.about-text p {margin-bottom:1.5rem; font-size:1.1rem;}
-.about-image {background: var(--gold); height:400px; border-radius:15px; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:1.2rem; text-align:center;}
-
-/* Gallery */
-.gallery {padding:5rem 0; background:var(--white);}
-.gallery-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin-top:3rem;}
-.gallery-item {position:relative; overflow:hidden; border-radius:10px; cursor:pointer;}
-.gallery-item img {width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease, filter 0.3s ease; display:block;}
-.gallery-item:hover img {transform:scale(1.08); filter:brightness(0.9);}
-.gallery-item .caption {position:absolute; left:0; bottom:0; width:100%; padding:0.6rem 0.8rem; font-family:var(--font-subtitle); font-weight:600; font-size:0.95rem; color:#fff; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%); border-radius:0 0 10px 10px; pointer-events:none;}
-
-/* Lightbox */
-.lightbox {display:none; position:fixed; z-index:3000; inset:0; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; padding:2rem;}
-.lightbox .lightbox-img {max-width:90vw; max-height:80vh; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.5);}
-.lightbox .close {position:absolute; top:15px; right:20px; font-size:2rem; color:#fff; cursor:pointer;}
-
-/* Footer */
-.footer {background:var(--chocolate); color:var(--white); padding:3rem 0 1rem;}
-.footer-content {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; max-width:1200px;margin:0 auto;padding:0 2rem;}
-.footer h4 {font-family:var(--font-heading); margin-bottom:1rem;}
-.footer a {color:var(--white); text-decoration:none;}
-.footer a:hover {color:var(--gold);}
-.copy {text-align:center; padding-top:2rem; font-size:0.9rem; opacity:0.8;}
-
-/* Responsive */
-@media(max-width:900px){.about-content{grid-template-columns:1fr;}}
-@media(max-width:768px){.nav-menu{display:none;position:absolute;top:100%;right:0;background:var(--terracotta);flex-direction:column;width:200px;border-radius:10px;overflow:hidden;}
-.nav-menu.show{display:flex;}
-.hamburger{display:flex;}}
-</style>
+    /* Translate Button */
+    .translate-btn {position:fixed; bottom:20px; right:20px; background-color:#ff4081; color:white; border:none; padding:10px 15px; border-radius:50px; cursor:pointer; z-index:1000; transition: transform 0.3s;}
+    .translate-btn:hover {transform:scale(1.1);}
+  </style>
 </head>
 <body>
 
-<!-- Header -->
-<header class="header">
-  <div class="nav-container">
-    <a href="#" class="logo">Zuri Braids</a>
-    <nav>
-      <ul class="nav-menu">
-        <li><a href="#hero">Inicio</a></li>
-        <li><a href="#services">Servicios</a></li>
-        <li><a href="#about">Nosotros</a></li>
-        <li><a href="#gallery">Galería</a></li>
-        <li><a href="#contact">Contacto</a></li>
-        <li><a href="#reservation" class="cta-button">Reservar</a></li>
-      </ul>
-      <div class="hamburger"><span></span><span></span><span></span></div>
-    </nav>
-  </div>
-</header>
+  <!-- Navbar -->
+  <nav>
+    <a href="#hero">Inicio</a>
+    <a href="#about">Sobre Nosotros</a>
+    <a href="#gallery">Galería</a>
+  </nav>
 
-<!-- Hero -->
-<section class="hero" id="hero">
-  <div class="hero-content">
-    <h1>Zuri Braids</h1>
-    <p>Especialistas en trenzas africanas, cuidado del cabello y estilo único para cada cliente.</p>
-    <div class="hero-buttons">
-      <a href="#services" class="btn-primary">Nuestros Servicios</a>
-      <a href="#reservation" class="btn-secondary">Reservar Ahora</a>
+  <!-- Hero Section -->
+  <section class="hero" id="hero" style="background-image:url('img/hero.jpg');">
+    <div class="hero-content">
+      <h1>Bienvenido a Nuestro Salón</h1>
+      <p>Transformamos tu estilo con peinados únicos</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Services -->
-<section class="services" id="services">
-  <div class="container">
-    <h2 class="section-title">Servicios</h2>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-braille"></i></div>
-        <h3>Trenzas Africanas</h3>
-        <p class="price-range">$50 - $120</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-spa"></i></div>
-        <h3>Cuidado del Cabello</h3>
-        <p class="price-range">$30 - $80</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon"><i class="fas fa-scissors"></i></div>
-        <h3>Peinados Especiales</h3>
-        <p class="price-range">$40 - $100</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- About -->
-<section class="about" id="about">
-  <div class="container about-content">
+  <!-- About Section -->
+  <section id="about">
     <div class="about-text">
       <h2>Sobre Nosotros</h2>
-      <p>En Zuri Braids combinamos tradición y modernidad para ofrecerte estilos únicos que resaltan tu personalidad. Nuestro equipo está capacitado en técnicas africanas y contemporáneas para brindarte el mejor servicio.</p>
-      <p>Buscamos que cada cliente se sienta cómodo y salga con un look que refleje confianza y belleza.</p>
+      <p>En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!</p>
     </div>
-    <div class="about-image">Imagen del equipo o salón</div>
-  </div>
-</section>
+    <div class="about-image">
+      <img src="img/about.jpg" alt="Sobre nosotros">
+    </div>
+  </section>
 
-<!-- Gallery -->
-<section class="gallery" id="gallery">
-  <div class="container">
-    <h2 class="section-title">Galería</h2>
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2>Nuestra Galería</h2>
     <div class="gallery-grid">
-      <div class="gallery-item"><img src="img/gallery1.jpg" alt="Galería 1"><div class="caption">Trenzas Africanas</div></div>
-      <div class="gallery-item"><img src="img/gallery2.jpg" alt="Galería 2"><div class="caption">Peinados Especiales</div></div>
-      <div class="gallery-item"><img src="img/gallery3.jpg" alt="Galería 3"><div class="caption">Cuidado del Cabello</div></div>
-      <div class="gallery-item"><img src="img/gallery4.jpg" alt="Galería 4"><div class="caption">Estilos Modernos</div></div>
+      <div class="gallery-item"><img src="img/box-braids.jpg" alt="Box Braids"><div class="caption">Box Braids</div></div>
+      <div class="gallery-item"><img src="img/cornrows.jpg" alt="Cornrows"><div class="caption">Cornrows</div></div>
+      <div class="gallery-item"><img src="img/fulani.jpg" alt="Fulani"><div class="caption">Fulani</div></div>
+      <div class="gallery-item"><img src="img/ghana.jpg" alt="Ghana Braids"><div class="caption">Ghana Braids</div></div>
+      <div class="gallery-item"><img src="img/twist-out.jpg" alt="Twist Out"><div class="caption">Twist Out</div></div>
+      <div class="gallery-item"><img src="img/updo.jpg" alt="Updo"><div class="caption">Updo</div></div>
+      <div class="gallery-item"><img src="img/salon.jpg" alt="Salón"><div class="caption">Nuestro Salón</div></div>
     </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <span onclick="closeLightbox()">&times;</span>
+    <img src="" alt="Imagen ampliada">
   </div>
-</section>
 
-<!-- Reservation -->
-<section class="reservation" id="reservation" style="padding:5rem 0; background:var(--ivory);">
-  <div class="container">
-    <h2 class="section-title">Reserva tu cita</h2>
-    <form style="max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;">
-      <input type="text" placeholder="Nombre" required style="padding:0.8rem;border-radius:5px;border:1px solid #ccc;">
-      <input type="email" placeholder="Correo" required style="padding:0.8rem;border-radius:5px;border:1px solid #ccc;">
-      <input type="tel" placeholder="Teléfono" required style="padding:0.8rem;border-radius:5px;border:1px solid #ccc;">
-      <input type="date" required style="padding:0.8rem;border-radius:5px;border:1px solid #ccc;">
-      <button type="submit" style="padding:1rem;background:var(--coral);color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">Reservar</button>
-    </form>
-  </div>
-</section>
+  <!-- Translate Button -->
+  <button class="translate-btn" onclick="translatePage()">Traducir a Inglés</button>
 
-<!-- Footer -->
-<footer class="footer">
-  <div class="footer-content">
-    <div>
-      <h4>Zuri Braids</h4>
-      <p>Transformando tu estilo con creatividad y pasión.</p>
-    </div>
-    <div>
-      <h4>Enlaces</h4>
-      <a href="#hero">Inicio</a><br>
-      <a href="#services">Servicios</a><br>
-      <a href="#about">Nosotros</a><br>
-      <a href="#gallery">Galería</a><br>
-      <a href="#reservation">Reservar</a>
-    </div>
-    <div>
-      <h4>Contacto</h4>
-      <p>Email: info@zuribraids.com</p>
-      <p>Tel: +507 123-4567</p>
-    </div>
-    <div>
-      <h4>Redes Sociales</h4>
-      <a href="#"><i class="fab fa-facebook"></i> Facebook</a><br>
-      <a href="#"><i class="fab fa-instagram"></i> Instagram</a><br>
-      <a href="#"><i class="fab fa-tiktok"></i> TikTok</a>
-    </div>
-  </div>
-  <div class="copy">&copy; 2025 Zuri Braids. Todos los derechos reservados.</div>
-</footer>
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Nuestro Salón. Todos los derechos reservados.
+  </footer>
 
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <span class="close">&times;</span>
-  <img class="lightbox-img" src="" alt="Imagen ampliada">
-</div>
+  <script>
+    // Traducción bidireccional
+    let lang = "es";
+    function translatePage() {
+      if(lang === "es") {
+        lang = "en";
+        document.documentElement.lang = "en";
+        document.querySelector(".hero h1").textContent = "Welcome to Our Salon";
+        document.querySelector(".hero p").textContent = "We transform your style with unique hairstyles";
+        document.querySelector("#about h2").textContent = "About Us";
+        document.querySelector("#about p").textContent = "At our salon we specialize in African and modern hairstyles. Our professional team is ready to offer you quality service and creativity in every style. Your satisfaction is our priority!";
+        document.querySelector("#gallery h2").textContent = "Our Gallery";
+        const captions = ["Box Braids","Cornrows","Fulani","Ghana Braids","Twist Out","Updo","Our Salon"];
+        document.querySelectorAll(".caption").forEach((c,i)=>c.textContent=captions[i]);
+        const navs = ["Home","About Us","Gallery"];
+        document.querySelectorAll("nav a").forEach((a,i)=>a.textContent = navs[i]);
+        document.querySelector(".translate-btn").textContent = "Traducir a Español";
+      } else {
+        lang = "es";
+        document.documentElement.lang = "es";
+        document.querySelector(".hero h1").textContent = "Bienvenido a Nuestro Salón";
+        document.querySelector(".hero p").textContent = "Transformamos tu estilo con peinados únicos";
+        document.querySelector("#about h2").textContent = "Sobre Nosotros";
+        document.querySelector("#about p").textContent = "En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!";
+        document.querySelector("#gallery h2").textContent = "Nuestra Galería";
+        const captions = ["Box Braids","Cornrows","Fulani","Ghana Braids","Twist Out","Updo","Nuestro Salón"];
+        document.querySelectorAll(".caption").forEach((c,i)=>c.textContent=captions[i]);
+        const navs = ["Inicio","Sobre Nosotros","Galería"];
+        document.querySelectorAll("nav a").forEach((a,i)=>a.textContent = navs[i]);
+        document.querySelector(".translate-btn").textContent = "Traducir a Inglés";
+      }
+    }
 
-<!-- Google Translate -->
-<div id="google_translate_element" style="position:fixed;bottom:10px;right:10px;z-index:2000;"></div>
-
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'es'}, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-<script>
-// Hamburger
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-hamburger.addEventListener('click', ()=>{navMenu.classList.toggle('show');});
-
-// Gallery Lightbox
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.querySelector('.lightbox-img');
-const closeBtn = document.querySelector('.lightbox .close');
-document.querySelectorAll('.gallery-item img').forEach(img=>{
-  img.addEventListener('click', ()=>{
-    lightbox.style.display='flex';
-    lightboxImg.src=img.src;
-  });
-});
-closeBtn.addEventListener('click', ()=>{lightbox.style.display='none';});
-lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
-</script>
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('.gallery-item img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+      });
+    });
+    function closeLightbox(){
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    }
+  </script>
 
 </body>
 </html>
