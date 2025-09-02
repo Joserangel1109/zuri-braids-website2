@@ -1,107 +1,304 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Salón de Peinados</title>
-  <style>
-    body { margin: 0; font-family: Arial, sans-serif; }
-    nav { background: #222; color: #fff; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; }
-    nav a { color: #fff; margin: 0 10px; text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-    .translate-btn { cursor: pointer; background: #fff; color: #222; border: none; padding: 5px 10px; border-radius: 5px; }
-    
-    /* Hero */
-    .hero { height: 80vh; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: #fff; text-align: center; }
-    .hero-content h1 { font-size: 3em; margin: 0; }
-    .hero-content p { font-size: 1.5em; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salón de Peinados Profesional</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Roboto',sans-serif;line-height:1.6;color:#333;}
+  a{text-decoration:none;color:inherit;}
+  button{cursor:pointer;}
 
-    /* About */
-    #about { display: flex; flex-wrap: wrap; padding: 50px 20px; background: #f9f9f9; }
-    .about-text { flex: 1 1 400px; padding: 20px; }
-    .about-image { flex: 1 1 400px; padding: 20px; }
-    .about-image img { max-width: 100%; border-radius: 10px; }
+  /* NAVIGATION */
+  nav{
+    background: linear-gradient(90deg,#f0a500,#ffbe34);
+    color:#fff;
+    padding:10px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+  }
+  nav a{margin:0 15px;font-weight:500;color:#fff;transition:.3s;}
+  nav a:hover{color:#222;}
+  .translate-btn{
+    background:#222;color:#fff;border:none;padding:5px 12px;border-radius:5px;font-weight:bold;
+  }
 
-    /* Gallery */
-    #gallery { padding: 50px 20px; text-align: center; }
-    #gallery h2 { margin-bottom: 30px; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-    .gallery-item { position: relative; overflow: hidden; border-radius: 10px; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
-    .gallery-item:hover img { transform: scale(1.1); }
-    .caption { position: absolute; bottom: 0; background: rgba(0,0,0,0.6); color: #fff; width: 100%; padding: 5px; text-align: center; }
+  /* HERO */
+  .hero{
+    height:90vh;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:'';
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.5);
+  }
+  .hero-content{
+    position:relative;
+    z-index:1;
+    animation:fadeIn 1.5s ease-in;
+  }
+  .hero-content h1{font-size:3.5em;margin-bottom:20px;}
+  .hero-content p{font-size:1.5em;margin-bottom:30px;}
+  .btn-reserve{
+    padding:12px 25px;
+    font-size:1.2em;
+    background:#f0a500;
+    color:#fff;
+    border:none;
+    border-radius:8px;
+    transition:.3s;
+  }
+  .btn-reserve:hover{background:#ffbe34;}
+  @keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+  }
 
-    /* Footer */
-    footer { background: #222; color: #fff; text-align: center; padding: 20px; }
+  /* ABOUT */
+  #about{
+    display:flex;
+    flex-wrap:wrap;
+    padding:80px 20px;
+    align-items:center;
+    gap:40px;
+    background:#fff5e6;
+  }
+  .about-text{flex:1 1 400px;opacity:0;transform:translateY(50px);transition:.8s;}
+  .about-text h2{font-size:2.5em;margin-bottom:20px;color:#222;}
+  .about-text p{font-size:1.1em;color:#555;margin-bottom:20px;}
+  .about-image{flex:1 1 400px;opacity:0;transform:translateY(50px);transition:.8s;}
+  .about-image img{width:100%;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,0.3);}
 
-  </style>
+  /* GALLERY */
+  #gallery{padding:80px 20px;text-align:center;background:#f9f9f9;}
+  #gallery h2{font-size:2.5em;margin-bottom:40px;opacity:0;transform:translateY(50px);transition:.8s;}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+  }
+  .gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    cursor:pointer;
+  }
+  .gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform .5s;
+  }
+  .gallery-item:hover img{transform:scale(1.1);}
+  .caption{
+    position:absolute;
+    bottom:-100%;
+    background:rgba(0,0,0,0.7);
+    width:100%;
+    padding:10px 0;
+    color:#fff;
+    font-weight:bold;
+    text-align:center;
+    font-size:1em;
+    transition:.4s;
+  }
+  .gallery-item:hover .caption{bottom:0;}
+
+  /* SOCIAL MEDIA */
+  .social{
+    text-align:center;
+    padding:40px 0;
+    background:#fff5e6;
+    opacity:0;transform:translateY(50px);transition:.8s;
+  }
+  .social a{margin:0 15px;font-size:2em;color:#222;transition:.3s;}
+  .social a:hover{color:#f0a500;}
+
+  /* TESTIMONIALS */
+  #testimonials{
+    background:#f9f9f9;
+    padding:80px 20px;
+    text-align:center;
+  }
+  #testimonials h2{font-size:2.5em;margin-bottom:40px;opacity:0;transform:translateY(50px);transition:.8s;}
+  .testimonial-slider{
+    display:flex;
+    overflow-x:auto;
+    gap:20px;
+    scroll-snap-type:x mandatory;
+  }
+  .testimonial{
+    flex:0 0 300px;
+    background:#fff;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    scroll-snap-align:start;
+  }
+  .testimonial p{font-style:italic;color:#555;margin-bottom:15px;}
+  .testimonial h3{color:#222;font-weight:bold;}
+
+  /* FOOTER */
+  footer{
+    background:#222;color:#fff;text-align:center;padding:40px 20px;font-size:1em;
+  }
+  footer a{color:#f0a500;}
+
+  /* WhatsApp Floating */
+  .whatsapp-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:#fff;
+    font-size:2em;
+    padding:15px;
+    border-radius:50%;
+    box-shadow:0 5px 15px rgba(0,0,0,0.3);
+    z-index:1000;
+    transition:.3s;
+  }
+  .whatsapp-btn:hover{transform:scale(1.1);}
+
+  /* Responsive */
+  @media(max-width:768px){
+    .hero-content h1{font-size:2.5em;}
+    .hero-content p{font-size:1.2em;}
+    #about{flex-direction:column;}
+  }
+</style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div>
-      <a href="#hero" data-es="Inicio" data-en="Home">Inicio</a>
-      <a href="#about" data-es="Sobre Nosotros" data-en="About">Sobre Nosotros</a>
-      <a href="#gallery" data-es="Galería" data-en="Gallery">Galería</a>
+<!-- Navigation -->
+<nav>
+  <div>
+    <a href="#hero" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="#about" data-es="Sobre Nosotros" data-en="About">Sobre Nosotros</a>
+    <a href="#gallery" data-es="Galería" data-en="Gallery">Galería</a>
+    <a href="#testimonials" data-es="Testimonios" data-en="Testimonials">Testimonios</a>
+    <a href="#social" data-es="Redes" data-en="Social">Redes</a>
+    <a href="#hero" class="btn-reserve" data-es="Reserva Ahora" data-en="Book Now">Reserva Ahora</a>
+  </div>
+  <button class="translate-btn" id="translateBtn">EN</button>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="hero" style="background-image:url('img/hero.jpg');">
+  <div class="hero-content">
+    <h1 data-es="Bienvenido a Nuestro Salón" data-en="Welcome to Our Salon">Bienvenido a Nuestro Salón</h1>
+    <p data-es="Transformamos tu estilo con peinados únicos" data-en="We transform your style with unique hairstyles">Transformamos tu estilo con peinados únicos</p>
+    <button class="btn-reserve" data-es="Reserva Ahora" data-en="Book Now">Reserva Ahora</button>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+  <div class="about-text">
+    <h2 data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</h2>
+    <p data-es="En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!" 
+       data-en="At our salon, we specialize in African and modern hairstyles. Our professional team is ready to offer you quality service and creativity in every style. Your satisfaction is our priority!">
+       En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!
+    </p>
+    <button class="btn-reserve" data-es="Reserva tu cita" data-en="Book Your Appointment">Reserva tu cita</button>
+  </div>
+  <div class="about-image">
+    <img src="img/about.jpg" alt="Sobre nosotros">
+  </div>
+</section>
+
+<!-- Gallery Section -->
+<section id="gallery">
+  <h2 data-es="Nuestra Galería" data-en="Our Gallery">Nuestra Galería</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item"><img src="img/box-braids.jpg" alt="Box Braids"><div class="caption" data-es="Box Braids" data-en="Box Braids">Box Braids</div></div>
+    <div class="gallery-item"><img src="img/cornrows.jpg" alt="Cornrows"><div class="caption" data-es="Cornrows" data-en="Cornrows">Cornrows</div></div>
+    <div class="gallery-item"><img src="img/fulani.jpg" alt="Fulani"><div class="caption" data-es="Fulani" data-en="Fulani">Fulani</div></div>
+    <div class="gallery-item"><img src="img/ghana.jpg" alt="Ghana Braids"><div class="caption" data-es="Ghana Braids" data-en="Ghana Braids">Ghana Braids</div></div>
+    <div class="gallery-item"><img src="img/twist-out.jpg" alt="Twist Out"><div class="caption" data-es="Twist Out" data-en="Twist Out">Twist Out</div></div>
+    <div class="gallery-item"><img src="img/updo.jpg" alt="Updo"><div class="caption" data-es="Updo" data-en="Updo">Updo</div></div>
+    <div class="gallery-item"><img src="img/salon.jpg" alt="Nuestro Salón"><div class="caption" data-es="Nuestro Salón" data-en="Our Salon">Nuestro Salón</div></div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials">
+  <h2 data-es="Testimonios" data-en="Testimonials">Testimonios</h2>
+  <div class="testimonial-slider">
+    <div class="testimonial">
+      <p data-es="¡Me encantó mi peinado! El equipo es muy profesional." data-en="I loved my hairstyle! The team is very professional.">¡Me encantó mi peinado! El equipo es muy profesional.</p>
+      <h3 data-es="Ana P." data-en="Ana P.">Ana P.</h3>
     </div>
-    <button class="translate-btn" id="translateBtn">EN</button>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero" id="hero" style="background-image:url('img/hero.jpg');">
-    <div class="hero-content">
-      <h1 data-es="Bienvenido a Nuestro Salón" data-en="Welcome to Our Salon">Bienvenido a Nuestro Salón</h1>
-      <p data-es="Transformamos tu estilo con peinados únicos" data-en="We transform your style with unique hairstyles">Transformamos tu estilo con peinados únicos</p>
+    <div class="testimonial">
+      <p data-es="Siempre salgo feliz y con un estilo único." data-en="I always leave happy with a unique style.">Siempre salgo feliz y con un estilo único.</p>
+      <h3 data-es="Luis M." data-en="Luis M.">Luis M.</h3>
     </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <div class="about-text">
-      <h2 data-es="Sobre Nosotros" data-en="About Us">Sobre Nosotros</h2>
-      <p data-es="En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!" 
-         data-en="At our salon, we specialize in African and modern hairstyles. Our professional team is ready to offer you quality service and creativity in every style. Your satisfaction is our priority!">
-         En nuestro salón nos especializamos en peinados africanos y modernos. Nuestro equipo profesional está listo para ofrecerte un servicio de calidad y creatividad en cada estilo. ¡Tu satisfacción es nuestra prioridad!
-      </p>
+    <div class="testimonial">
+      <p data-es="Excelente atención y ambiente agradable." data-en="Excellent service and pleasant atmosphere.">Excelente atención y ambiente agradable.</p>
+      <h3 data-es="Carla R." data-en="Carla R.">Carla R.</h3>
     </div>
-    <div class="about-image">
-      <img src="img/about.jpg" alt="Sobre nosotros">
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Gallery Section -->
-  <section id="gallery">
-    <h2 data-es="Nuestra Galería" data-en="Our Gallery">Nuestra Galería</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item"><img src="img/box-braids.jpg" alt="Box Braids"><div class="caption" data-es="Box Braids" data-en="Box Braids">Box Braids</div></div>
-      <div class="gallery-item"><img src="img/cornrows.jpg" alt="Cornrows"><div class="caption" data-es="Cornrows" data-en="Cornrows">Cornrows</div></div>
-      <div class="gallery-item"><img src="img/fulani.jpg" alt="Fulani"><div class="caption" data-es="Fulani" data-en="Fulani">Fulani</div></div>
-      <div class="gallery-item"><img src="img/ghana.jpg" alt="Ghana Braids"><div class="caption" data-es="Ghana Braids" data-en="Ghana Braids">Ghana Braids</div></div>
-      <div class="gallery-item"><img src="img/twist-out.jpg" alt="Twist Out"><div class="caption" data-es="Twist Out" data-en="Twist Out">Twist Out</div></div>
-      <div class="gallery-item"><img src="img/updo.jpg" alt="Updo"><div class="caption" data-es="Updo" data-en="Updo">Updo</div></div>
-      <div class="gallery-item"><img src="img/salon.jpg" alt="Nuestro Salón"><div class="caption" data-es="Nuestro Salón" data-en="Our Salon">Nuestro Salón</div></div>
-    </div>
-  </section>
+<!-- Social Section -->
+<section class="social" id="social">
+  <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+  <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+  <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+  <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <p data-es="Todos los derechos reservados" data-en="All rights reserved">Todos los derechos reservados</p>
-  </footer>
+<!-- Footer -->
+<footer>
+  <p data-es="Todos los derechos reservados © 2025" data-en="All rights reserved © 2025">Todos los derechos reservados © 2025</p>
+  <p>✉ <a href="mailto:info@salon.com">info@salon.com</a> | 📞 +507 6000-0000</p>
+</footer>
 
-  <!-- Translation Script -->
-  <script>
-    const btn = document.getElementById('translateBtn');
-    let lang = 'es';
+<!-- WhatsApp Floating -->
+<a href="https://wa.me/5076000000" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
 
-    btn.addEventListener('click', () => {
-      lang = lang === 'es' ? 'en' : 'es';
-      document.querySelectorAll('[data-es]').forEach(el => {
-        el.innerText = el.getAttribute(`data-${lang}`);
-      });
-      btn.innerText = lang === 'es' ? 'EN' : 'ES';
+<!-- Scripts -->
+<script>
+  const btn = document.getElementById('translateBtn');
+  let lang = 'es';
+  btn.addEventListener('click', () => {
+    lang = lang==='es'?'en':'es';
+    document.querySelectorAll('[data-es]').forEach(el=>{
+      el.innerText = el.getAttribute(`data-${lang}`);
     });
-  </script>
+    btn.innerText = lang==='es'?'EN':'ES';
+  });
+
+  // Scroll animations
+  const faders = document.querySelectorAll('.about-text, .about-image, #gallery h2, #testimonials h2, .social');
+  const appearOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+  const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      entry.target.style.opacity=1;
+      entry.target.style.transform='translateY(0)';
+      appearOnScroll.unobserve(entry.target);
+    });
+  }, appearOptions);
+  faders.forEach(fader=>{appearOnScroll.observe(fader);});
+</script>
 
 </body>
 </html>
