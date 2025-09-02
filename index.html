@@ -1,178 +1,267 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zuri Braids - Especialistas en Trenzas Africanas</title>
-    <meta name="description" content="Zuri Braids: Especialistas en trenzas africanas, protective styles y cuidado capilar natural. Más de 8 años de experiencia. ¡Reserva tu cita online!">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zuri Braids - Especialistas en Trenzas Africanas</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+:root {
+    --gold: #D4AF37;
+    --terracotta: #8B4513;
+    --ivory: #FFF8DC;
+    --olive: #6B8E23;
+    --chocolate: #3C1810;
+    --beige: #F5F5DC;
+    --coral: #FF6B6B;
+    --charcoal: #36454F;
+    --white: #FFFFFF;
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --gold: #D4AF37;
-            --terracotta: #8B4513;
-            --ivory: #FFF8DC;
-            --olive: #6B8E23;
-            --chocolate: #3C1810;
-            --beige: #F5F5DC;
-            --coral: #FF6B6B;
-            --charcoal: #36454F;
-            --white: #FFFFFF;
-            
-            --font-heading: 'Playfair Display', serif;
-            --font-subtitle: 'Montserrat', sans-serif;
-            --font-body: 'Open Sans', sans-serif;
-        }
+    --font-heading: 'Playfair Display', serif;
+    --font-subtitle: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-body); line-height: 1.6; color: var(--charcoal); background-color: var(--ivory); }
+* {margin:0;padding:0;box-sizing:border-box;}
+body {font-family:var(--font-body);line-height:1.6;color:var(--charcoal);background-color:var(--ivory);}
 
-        /* Header */
-        .header {
-            background: linear-gradient(135deg, var(--terracotta), var(--chocolate));
-            color: var(--white);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+/* Header */
+.header {background: linear-gradient(135deg, var(--terracotta), var(--chocolate)); color: var(--white); padding: 1rem 0; position: fixed; width: 100%; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.1);}
+.nav-container {max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:0 2rem;}
+.logo {font-family:var(--font-heading); font-size:1.8rem; font-weight:700; color:var(--gold); text-decoration:none;}
+.nav-menu {display:flex; list-style:none; gap:2rem;}
+.nav-menu a {color:var(--white); text-decoration:none; font-family:var(--font-subtitle); font-weight:500; transition: color 0.3s;}
+.nav-menu a:hover {color:var(--gold);}
+.cta-button {background: var(--coral); color: var(--white); padding:0.8rem 1.5rem; border:none; border-radius:25px; font-family:var(--font-subtitle); font-weight:600; cursor:pointer; transition:all 0.3s; text-decoration:none;}
+.cta-button:hover {background:#ff5252; transform:translateY(-2px); box-shadow:0 5px 15px rgba(255,107,107,0.4);}
+.hamburger {display:none; flex-direction:column; cursor:pointer;}
+.hamburger span {width:25px;height:3px;background:var(--white);margin:3px 0; transition:0.3s;}
 
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
-        .logo { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--gold); text-decoration: none; }
-        .nav-menu { display: flex; list-style: none; gap: 2rem; }
-        .nav-menu a { color: var(--white); text-decoration: none; font-family: var(--font-subtitle); font-weight: 500; transition: color 0.3s; }
-        .nav-menu a:hover { color: var(--gold); }
-        .cta-button { background: var(--coral); color: var(--white); padding: 0.8rem 1.5rem; border: none; border-radius: 25px; font-family: var(--font-subtitle); font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; }
-        .cta-button:hover { background: #ff5252; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4); }
+/* Hero */
+.hero {background: linear-gradient(rgba(139,69,19,0.7), rgba(60,24,16,0.7)), url('img/hero.jpg'); background-size:cover; background-position:center; height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; color:var(--white); margin-top:80px;}
+.hero-content {max-width:800px; padding:0 2rem;}
+.hero h1 {font-family:var(--font-heading); font-size:3.5rem; margin-bottom:1rem; color:var(--gold); text-shadow:2px 2px 4px rgba(0,0,0,0.3);}
+.hero p {font-size:1.3rem; margin-bottom:2rem; opacity:0.9;}
+.hero-buttons {display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;}
+.btn-primary {background:var(--gold); color:var(--charcoal); padding:1rem 2rem; border:none; border-radius:30px; font-family:var(--font-subtitle); font-weight:600; cursor:pointer; transition:all 0.3s; text-decoration:none; display:inline-block;}
+.btn-primary:hover {background:#b8941f; transform:translateY(-2px); box-shadow:0 5px 15px rgba(212,175,55,0.4);}
+.btn-secondary {background:transparent; color:var(--white); padding:1rem 2rem; border:2px solid var(--white); border-radius:30px; font-family:var(--font-subtitle); font-weight:600; cursor:pointer; transition:all 0.3s; text-decoration:none; display:inline-block;}
+.btn-secondary:hover {background:var(--white); color:var(--terracotta);}
 
-        .hamburger { display: none; flex-direction: column; cursor: pointer; }
-        .hamburger span { width: 25px; height: 3px; background: var(--white); margin: 3px 0; transition: 0.3s; }
+/* Sections */
+.container {max-width:1200px;margin:0 auto;padding:0 2rem;}
+.section-title {font-family:var(--font-heading); font-size:2.5rem; text-align:center; margin-bottom:3rem; color:var(--terracotta);}
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(139, 69, 19, 0.8), rgba(60, 24, 16, 0.8)),
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%238B4513" width="1200" height="600"/><path fill="%23D4AF37" opacity="0.1" d="M0,400 Q300,200 600,400 T1200,400 L1200,600 L0,600 Z"/></svg>');
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            margin-top: 80px;
-        }
+/* Services */
+.services {padding:5rem 0; background:var(--white);}
+.services-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem;}
+.service-card {background:var(--beige); border-radius:15px; padding:2rem; text-align:center; transition:all 0.3s; box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+.service-card:hover {transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15);}
+.service-icon {font-size:3rem; color:var(--gold); margin-bottom:1rem;}
+.service-card h3 {font-family:var(--font-subtitle); font-size:1.5rem; margin-bottom:1rem; color:var(--terracotta);}
+.price-range {font-family:var(--font-subtitle); font-weight:600; color:var(--gold); font-size:1.2rem;}
 
-        .hero-content { max-width: 800px; padding: 0 2rem; }
-        .hero h1 { font-family: var(--font-heading); font-size: 3.5rem; margin-bottom: 1rem; color: var(--gold); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.9; }
-        .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-        .btn-primary { background: var(--gold); color: var(--charcoal); padding: 1rem 2rem; border: none; border-radius: 30px; font-family: var(--font-subtitle); font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
-        .btn-primary:hover { background: #b8941f; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
-        .btn-secondary { background: transparent; color: var(--white); padding: 1rem 2rem; border: 2px solid var(--white); border-radius: 30px; font-family: var(--font-subtitle); font-weight: 600; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
-        .btn-secondary:hover { background: var(--white); color: var(--terracotta); }
+/* About */
+.about {padding:5rem 0; background: linear-gradient(45deg, var(--beige), var(--ivory));}
+.about-content {display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:center;}
+.about-text h2 {font-family:var(--font-heading); font-size:2.2rem; margin-bottom:1.5rem; color:var(--terracotta);}
+.about-text p {margin-bottom:1.5rem; font-size:1.1rem;}
+.about-image {background: var(--gold); height:400px; border-radius:15px; display:flex; align-items:center; justify-content:center; color:var(--white); font-size:1.2rem; text-align:center;}
 
-        /* Services Section */
-        .services { padding: 5rem 0; background: var(--white); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-        .section-title { font-family: var(--font-heading); font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: var(--terracotta); }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .service-card { background: var(--beige); border-radius: 15px; padding: 2rem; text-align: center; transition: all 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .service-icon { font-size: 3rem; color: var(--gold); margin-bottom: 1rem; }
-        .service-card h3 { font-family: var(--font-subtitle); font-size: 1.5rem; margin-bottom: 1rem; color: var(--terracotta); }
-        .service-card p { margin-bottom: 1rem; color: var(--charcoal); }
-        .price-range { font-family: var(--font-subtitle); font-weight: 600; color: var(--gold); font-size: 1.2rem; }
+/* Gallery */
+.gallery {padding:5rem 0; background:var(--white);}
+.gallery-grid {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1rem; margin-top:3rem;}
+.gallery-item {position:relative; overflow:hidden; border-radius:10px; cursor:pointer;}
+.gallery-item img {width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease, filter 0.3s ease; display:block;}
+.gallery-item:hover img {transform:scale(1.08); filter:brightness(0.9);}
+.gallery-item .caption {position:absolute; left:0; bottom:0; width:100%; padding:0.6rem 0.8rem; font-family:var(--font-subtitle); font-weight:600; font-size:0.95rem; color:#fff; background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%); border-radius:0 0 10px 10px; pointer-events:none;}
 
-        /* About Section */
-        .about { padding: 5rem 0; background: linear-gradient(45deg, var(--beige), var(--ivory)); }
-        .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        .about-text h2 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--terracotta); }
-        .about-text p { margin-bottom: 1.5rem; font-size: 1.1rem; }
-        .about-image { background: var(--gold); height: 400px; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: var(--white); font-size: 1.2rem; text-align: center; }
+/* Lightbox */
+.lightbox {display:none; position:fixed; z-index:3000; inset:0; background:rgba(0,0,0,0.85); justify-content:center; align-items:center; padding:2rem;}
+.lightbox .lightbox-img {max-width:90vw; max-height:80vh; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.5);}
+.lightbox .close {position:absolute; top:15px; right:20px; font-size:2rem; color:#fff; cursor:pointer;}
 
-        /* Gallery Section */
-        .gallery { padding: 5rem 0; background: var(--white); }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; transition: transform 0.3s; }
-        .gallery-item img:hover { transform: scale(1.05); }
+/* Footer */
+.footer {background:var(--chocolate); color:var(--white); padding:3rem 0 1rem;}
+.footer-content {display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; max-width:1200px;margin:0 auto;padding:0 2rem;}
+.footer h4 {font-family:var(--font-heading); margin-bottom:1rem;}
+.footer a {color:var(--white); text-decoration:none;}
+.footer a:hover {color:var(--gold);}
+.copy {text-align:center; padding-top:2rem; font-size:0.9rem; opacity:0.8;}
 
-        /* Footer */
-        footer { background: var(--chocolate); color: var(--white); padding: 3rem 0; text-align: center; }
-        footer a { color: var(--gold); text-decoration: none; }
-        footer a:hover { text-decoration: underline; }
-
-        /* Responsive */
-        @media(max-width: 768px){
-            .nav-menu { display: none; flex-direction: column; background: var(--terracotta); position: absolute; top: 70px; right: 0; width: 200px; padding: 1rem; border-radius: 0 0 0 10px; }
-            .nav-menu.active { display: flex; }
-            .hamburger { display: flex; }
-            .about-content { grid-template-columns: 1fr; }
-        }
-    </style>
+/* Responsive */
+@media(max-width:900px){.about-content{grid-template-columns:1fr;}}
+@media(max-width:768px){.nav-menu{display:none;position:absolute;top:100%;right:0;background:var(--terracotta);flex-direction:column;width:200px;border-radius:10px;overflow:hidden;}
+.nav-menu.show{display:flex;}
+.hamburger{display:flex;}}
+</style>
 </head>
 <body>
 
-    <!-- Google Translate -->
-    <div id="google_translate_element" style="position: fixed; top: 10px; right: 10px; z-index: 2000;"></div>
+<!-- Header -->
+<header class="header">
+  <div class="nav-container">
+    <a href="#" class="logo">Zuri Braids</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#services">Servicios</a></li>
+        <li><a href="#about">Nosotros</a></li>
+        <li><a href="#gallery">Galería</a></li>
+        <li><a href="#contact">Contacto</a></li>
+        <li><a href="#reservation" class="cta-button">Reservar</a></li>
+      </ul>
+      <div class="hamburger"><span></span><span></span><span></span></div>
+    </nav>
+  </div>
+</header>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="nav-container">
-            <a href="#" class="logo">Zuri Braids</a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="#services">Servicios</a></li>
-                    <li><a href="#about">Acerca de</a></li>
-                    <li><a href="#gallery">Galería</a></li>
-                    <li><a href="#contact">Contacto</a></li>
-                </ul>
-            </nav>
-            <a href="#booking" class="cta-button">Reserva tu cita</a>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <h1>Zuri Braids</h1>
+    <p>Especialistas en trenzas africanas, cuidado del cabello y estilo único para cada cliente.</p>
+    <div class="hero-buttons">
+      <a href="#services" class="btn-primary">Nuestros Servicios</a>
+      <a href="#reservation" class="btn-secondary">Reservar Ahora</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Especialistas en Trenzas Africanas</h1>
-            <p>Protege tu cabello con estilo. Más de 8 años de experiencia en trenzas y cuidados capilares naturales.</p>
-            <div class="hero-buttons">
-                <a href="#services" class="btn-primary">Ver Servicios</a>
-                <a href="#booking" class="btn-secondary">Reserva Ahora</a>
-            </div>
-        </div>
-    </section>
+<!-- Services -->
+<section class="services" id="services">
+  <div class="container">
+    <h2 class="section-title">Servicios</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-braille"></i></div>
+        <h3>Trenzas Africanas</h3>
+        <p class="price-range">$50 - $120</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-spa"></i></div>
+        <h3>Cuidado del Cabello</h3>
+        <p class="price-range">$30 - $80</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fas fa-scissors"></i></div>
+        <h3>Peinados Especiales</h3>
+        <p class="price-range">$40 - $100</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Scripts -->
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+<!-- About -->
+<section class="about" id="about">
+  <div class="container about-content">
+    <div class="about-text">
+      <h2>Sobre Nosotros</h2>
+      <p>En Zuri Braids combinamos tradición y modernidad para ofrecerte estilos únicos que resaltan tu personalidad. Nuestro equipo está capacitado en técnicas africanas y contemporáneas para brindarte el mejor servicio.</p>
+      <p>Buscamos que cada cliente se sienta cómodo y salga con un look que refleje confianza y belleza.</p>
+    </div>
+    <div class="about-image">Imagen del equipo o salón</div>
+  </div>
+</section>
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-    </script>
+<!-- Gallery -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <h2 class="section-title">Galería</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="img/gallery1.jpg" alt="Galería 1"><div class="caption">Trenzas Africanas</div></div>
+      <div class="gallery-item"><img src="img/gallery2.jpg" alt="Galería 2"><div class="caption">Peinados Especiales</div></div>
+      <div class="gallery-item"><img src="img/gallery3.jpg" alt="Galería 3"><div class="caption">Cuidado del Cabello</div></div>
+      <div class="gallery-item"><img src="img/gallery4.jpg" alt="Galería 4"><div class="caption">Estilos Modernos</div></div>
+    </div>
+  </div>
+</section>
 
-    <!-- Google Translate Script -->
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-    }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<!-- Reservation -->
+<section class="reservation" id="reservation" style="padding:5rem 0; background:var(--ivory);">
+  <div class="container">
+    <h2 class="section-title">Reserva tu cita</h2>
+    <form style="max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:1rem;">
+      <input type="text" placeholder="Nombre" required style="padding:0.8rem;border-radius:5px;border:1px solid #ccc;">
+      <input type="email" placeholder="Correo" required style="padding:0.8rem;border-radius:5px;border:1px solid #ccc;">
+      <input type="tel" placeholder="Teléfono" required style="padding:0.8rem;border-radius:5px;border:1px solid #ccc;">
+      <input type="date" required style="padding:0.8rem;border-radius:5px;border:1px solid #ccc;">
+      <button type="submit" style="padding:1rem;background:var(--coral);color:#fff;border:none;border-radius:10px;font-weight:600;cursor:pointer;">Reservar</button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    <div>
+      <h4>Zuri Braids</h4>
+      <p>Transformando tu estilo con creatividad y pasión.</p>
+    </div>
+    <div>
+      <h4>Enlaces</h4>
+      <a href="#hero">Inicio</a><br>
+      <a href="#services">Servicios</a><br>
+      <a href="#about">Nosotros</a><br>
+      <a href="#gallery">Galería</a><br>
+      <a href="#reservation">Reservar</a>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <p>Email: info@zuribraids.com</p>
+      <p>Tel: +507 123-4567</p>
+    </div>
+    <div>
+      <h4>Redes Sociales</h4>
+      <a href="#"><i class="fab fa-facebook"></i> Facebook</a><br>
+      <a href="#"><i class="fab fa-instagram"></i> Instagram</a><br>
+      <a href="#"><i class="fab fa-tiktok"></i> TikTok</a>
+    </div>
+  </div>
+  <div class="copy">&copy; 2025 Zuri Braids. Todos los derechos reservados.</div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="close">&times;</span>
+  <img class="lightbox-img" src="" alt="Imagen ampliada">
+</div>
+
+<!-- Google Translate -->
+<div id="google_translate_element" style="position:fixed;bottom:10px;right:10px;z-index:2000;"></div>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'es'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+// Hamburger
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+hamburger.addEventListener('click', ()=>{navMenu.classList.toggle('show');});
+
+// Gallery Lightbox
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.querySelector('.lightbox-img');
+const closeBtn = document.querySelector('.lightbox .close');
+document.querySelectorAll('.gallery-item img').forEach(img=>{
+  img.addEventListener('click', ()=>{
+    lightbox.style.display='flex';
+    lightboxImg.src=img.src;
+  });
+});
+closeBtn.addEventListener('click', ()=>{lightbox.style.display='none';});
+lightbox.addEventListener('click', e=>{if(e.target===lightbox) lightbox.style.display='none';});
+</script>
 
 </body>
 </html>
